@@ -3,23 +3,25 @@ package eu.derfniw.aoc2022.ex01
 import scala.annotation.tailrec
 import scala.io.Source
 
-@tailrec
-def groupingHelper(in: Seq[Option[Int]], groups: Seq[Seq[Int]]): Seq[Seq[Int]] =
-  in.dropWhile(_.isEmpty) match
-    case Seq() => groups
-    case cs =>
-      val group = cs.takeWhile(_.nonEmpty).map(_.get)
-      groupingHelper(cs.dropWhile(_.nonEmpty), groups :+ group)
+type ElfLoad = Seq[Int]
+
+def parseInput(in: Source): Seq[ElfLoad] = 
+  @tailrec
+  def groupingHelper(in: Seq[Option[Int]], loads: Seq[ElfLoad]): Seq[ElfLoad] =
+    in.dropWhile(_.isEmpty) match
+      case Seq() => loads
+      case cs =>
+        val elf = cs.takeWhile(_.nonEmpty).flatten
+        groupingHelper(cs.drop(elf.length), loads :+ elf)
+  
+  val lines = in.mkString.split("\n").map(_.toIntOption)
+  groupingHelper(lines, Seq())
 
 def run01(input: Source): Int =
-  val lines    = input.mkString.split("\n").map(_.toIntOption)
-  val elfLoads = groupingHelper(lines, Seq())
-  elfLoads.map(_.sum).max
+  parseInput(input).map(_.sum).max
 
 def run02(input: Source): Int =
-  val lines = input.mkString.split("\n").map(_.toIntOption)
-  val elfLoads = groupingHelper(lines, Seq())
-  elfLoads.map(_.sum).sorted.takeRight(3).sum
+  parseInput(input).map(_.sum).sorted.takeRight(3).sum
 
 @main
 def exercise01() =
