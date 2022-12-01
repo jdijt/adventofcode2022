@@ -26,7 +26,8 @@ def run02(input: Source): Int =
 
 @main
 def exercise01() =
+  def source = Source.fromResource("input_01")
   print("Part 1: ")
-  println(run01(Source.fromResource("input_01")))
+  println(run01(source))
   print("Part 2: ")
-  println(run02(Source.fromResource("input_01")))
+  println(run02(source))
