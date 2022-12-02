@@ -2,20 +2,19 @@ package eu.derfniw.aoc2022.ex01
 
 import scala.annotation.tailrec
 import scala.io.Source
+import scala.collection.View.Unfold
+import java.util.stream.Collector.Characteristics
 
 type ElfLoad = Int
 
 def parseInput(in: Source): Seq[ElfLoad] =
-  @tailrec
-  def groupingHelper(in: Seq[Option[Int]], loads: Seq[ElfLoad]): Seq[ElfLoad] =
-    in.dropWhile(_.isEmpty) match
-      case Seq() => loads
-      case cs =>
-        val elf = cs.takeWhile(_.nonEmpty).flatten.sum
-        groupingHelper(cs.dropWhile(_.nonEmpty), loads :+ elf)
-
-  val lines = in.mkString.split("\n").map(_.toIntOption)
-  groupingHelper(lines, Seq())
+  Unfold(in.getLines().map(_.toIntOption).dropWhile(_.isEmpty)){ cs =>
+    if cs.isEmpty then None
+    else 
+      val elf = cs.takeWhile(_.nonEmpty).flatten.sum
+      val remainder = cs.dropWhile(_.isEmpty)
+      Some((elf, remainder))
+  }.toSeq
 end parseInput
 
 def run01(input: Source): Int =
