@@ -2,7 +2,7 @@ package eu.derfniw.aoc2022
 
 import scala.io.Source
 
-class Exercise1Test extends AocTestSuite:
+class Exercise01Test extends AocTestSuite:
 
   val sample = """|1000
                   |2000
@@ -21,5 +21,4 @@ class Exercise1Test extends AocTestSuite:
 
   testStringSample("Part one on sample input", sample, ex01.run01, 24000)
   testStringSample("Part two on sample input", sample, ex01.run02, 45000)
-
-end Exercise1Test
+end Exercise01Test
