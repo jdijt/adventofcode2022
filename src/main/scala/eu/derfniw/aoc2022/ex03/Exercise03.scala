@@ -29,7 +29,7 @@ def run02(input: Source): Int =
     .sum
 
 @main
-def exercise02() =
+def exercise03() =
   def source = Source.fromResource("input_03")
   print("Part 1: ")
   println(run01(source))
