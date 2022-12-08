@@ -3,12 +3,10 @@ package eu.derfniw.aoc2022.ex07
 import scala.io.Source
 
 enum FSTreeNode:
-  case Dir(name: String, children: Seq[FSTreeNode], totalSize: Int)
-  case File(name: String, fileSize: Int)
+  case Dir(name: String, children: Seq[FSTreeNode], size: Int)
+  case File(name: String, size: Int)
 
-  def size = this match
-    case Dir(_, _, totalSize) => totalSize
-    case File(_, fileSize)    => fileSize
+  def size: Int
 
 object FSTreeNode:
   def fromCommandList(lines: Seq[String]): FSTreeNode =
@@ -21,7 +19,7 @@ object FSTreeNode:
         val (childDirectories, remainingCommands) = lsOutput
           .filter(_.startsWith("dir"))
           .foldLeft((Seq[FSTreeNode](), remainder.drop(lsOutput.length))) {
-            case ((currentChilds, cmds), s"dir $name") =>
+            case ((currentChilds, cmds), _) =>
               val (newChild, remCmds) = helper(cmds)
               (currentChilds :+ newChild, remCmds)
           }
