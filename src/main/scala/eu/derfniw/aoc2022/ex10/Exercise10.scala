@@ -16,15 +16,7 @@ def run01(in: Source) =
         val (newState, newLogValues) = state.applyInstruction(instr)
         (newState, cycleLog ++ newLogValues)
     }
-  val signals = Seq(
-    (values(19) * 20),
-    (values(59) * 60),
-    (values(99) * 100),
-    (values(139) * 140),
-    (values(179) * 180),
-    (values(219) * 220)
-  )
-  signals.sum
+  Seq(20,60,100,140,180,220).map(idx => values(idx-1) * idx).sum
 end run01
 
 def run02(in: Source) =
