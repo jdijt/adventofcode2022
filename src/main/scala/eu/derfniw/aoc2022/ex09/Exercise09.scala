@@ -30,12 +30,9 @@ case class Point(x: Int, y: Int):
   def followOther(other: Point): Point =
     if this.adjacent(other) then this
     else
-      if this.x == other.x then this.translate(0, if other.y < this.y then -1 else 1)
-      else if this.y == other.y then this.translate(if other.x < this.x then -1 else 1, 0)
-      else
-        val xMove = if other.x < this.x then -1 else 1
-        val yMove = if other.y < this.y then -1 else 1
-        this.translate(xMove, yMove)
+      val xMove = if other.x == this.x then 0 else if other.x < this.x then -1 else 1
+      val yMove = if other.y == this.y then 0 else if other.y < this.y then -1 else 1
+      this.translate(xMove, yMove)
 end Point
 
 class Grid(head: Point, tail: Seq[Point], val tailVisited: Set[Point]):
