@@ -10,3 +10,4 @@ class Exercise08Test extends AocTestSuite:
 
   testStringSample("Part one on sample input", sample, ex08.run01, 21)
   testStringSample("Part two on sample input", sample, ex08.run02, 8)
+end Exercise08Test

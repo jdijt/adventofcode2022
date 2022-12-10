@@ -10,6 +10,7 @@ class Exercise03Test extends AocTestSuite:
                   |wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
                   |ttgJtRGJQctTZtZT
                   |CrZsJsPPZsGzwwsLwLmpwMDw""".stripMargin
-  
+
   testStringSample("Part one on sample input", sample, ex03.run01, 157)
   testStringSample("Part two on sample input", sample, ex03.run02, 70)
+end Exercise03Test

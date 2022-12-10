@@ -1,17 +1,18 @@
 package eu.derfniw.aoc2022.ex01
 
 import scala.annotation.tailrec
-import scala.io.Source
 import scala.collection.View.Unfold
+import scala.io.Source
+
 import java.util.stream.Collector.Characteristics
 
 type ElfLoad = Int
 
 def parseInput(in: Source): Seq[ElfLoad] =
-  Unfold(in.getLines().map(_.toIntOption).dropWhile(_.isEmpty)){ cs =>
+  Unfold(in.getLines().map(_.toIntOption).dropWhile(_.isEmpty)) { cs =>
     if cs.isEmpty then None
-    else 
-      val elf = cs.takeWhile(_.nonEmpty).flatten.sum
+    else
+      val elf       = cs.takeWhile(_.nonEmpty).flatten.sum
       val remainder = cs.dropWhile(_.isEmpty)
       Some((elf, remainder))
   }.toSeq
