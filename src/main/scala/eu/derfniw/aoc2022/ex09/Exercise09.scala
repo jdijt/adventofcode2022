@@ -31,7 +31,7 @@ case class Point(x: Int, y: Int):
     if this.adjacent(other) then this
     else
       if this.x == other.x then this.translate(0, if other.y < this.y then -1 else 1)
-      if this.y == other.y then this.translate(if other.x < this.x then -1 else 1, 0)
+      else if this.y == other.y then this.translate(if other.x < this.x then -1 else 1, 0)
       else
         val xMove = if other.x < this.x then -1 else 1
         val yMove = if other.y < this.y then -1 else 1
@@ -58,6 +58,24 @@ class Grid(head: Point, tail: Seq[Point], val tailVisited: Set[Point]):
       }.toSeq
 
       Grid(newHead, newTail, tailVisited + newTail.last).applyMove(nextMove)
+    end if
+  end applyMove
+
+  def mkString(minX: Int, maxX: Int, minY: Int, maxY: Int): String =
+    (minY to maxY)
+      .map(y =>
+        (minX to maxX)
+          .map(x =>
+            val p = Point(x, y)
+            if head == p then 'H'
+            else if tail.contains(p) then 'T'
+            else '.'
+          )
+          .mkString
+      )
+      .reverse
+      .mkString("\n")
+
 end Grid
 
 def run01(in: Source): Int =
@@ -84,5 +102,5 @@ def exercise09() =
   def source = Source.fromResource("input_09")
   print("Part 1: ")
   println(run01(source))
-//print("Part 2: ")
-//println(run02(source))
+  print("Part 2: ")
+  println(run02(source))
