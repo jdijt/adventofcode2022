@@ -9,19 +9,20 @@ case class ProgramState(xRegister: Int):
       (newState, Seq(xRegister, newState.xRegister))
     case "noop" => (this, Seq(xRegister))
 
-def executeProgram(in: Source): (ProgramState, IndexedSeq[Int]) =
-  in.getLines().foldLeft((ProgramState(1), IndexedSeq[Int](1))) { case ((state, cycleLog), instr) =>
-    val (newState, newLogValues) = state.applyInstruction(instr)
-    (newState, cycleLog ++ newLogValues)
-  }
+def executeProgram(in: Source): IndexedSeq[Int] =
+  in.getLines()
+    .foldLeft((ProgramState(1), IndexedSeq[Int](1))) { case ((state, cycleLog), instr) =>
+      val (newState, newLogValues) = state.applyInstruction(instr)
+      (newState, cycleLog ++ newLogValues)
+    }
+    ._2
 
 def run01(in: Source) =
-  val (_, values) = executeProgram(in)
+  val values = executeProgram(in)
   Seq(20, 60, 100, 140, 180, 220).map(idx => values(idx - 1) * idx).sum
 
 def run02(in: Source) =
-  val (_, signals) = executeProgram(in)
-  signals
+  executeProgram(in)
     .sliding(40, 40)
     .filter(_.length == 40)
     .map { lineValues =>
