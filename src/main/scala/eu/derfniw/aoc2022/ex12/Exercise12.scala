@@ -46,21 +46,21 @@ def parseInput(in: Source): HeightMap = in.getLines().map(_.toIndexedSeq).toInde
 
 def dijkstraHelper(startPoint: Point, endPoint: Point, map: HeightMap): Int =
   @tailrec
-  def helper(knownDistances: Map[Point, Int], visitedPoints: Set[Point]): Int =
-    val pointOpt = knownDistances.removedAll(visitedPoints).minByOption(_._2)
+  def helper(tentativeDistances: Map[Point, Int], visitedPoints: Set[Point]): Int =
+    val pointOpt = tentativeDistances.minByOption(_._2)
     if pointOpt.isEmpty then Int.MaxValue
     else
       val (point, pathLength) = pointOpt.get
-      val neighbors           = map.reachableFrom(point).removedAll(visitedPoints)
-      val newKnownDistances = neighbors.foldLeft(knownDistances) { (dists, p) =>
+      val neighbors           = map.reachableFrom(point).filterNot(visitedPoints)
+      val newKnownDistances = neighbors.foldLeft(tentativeDistances) { (dists, p) =>
         dists + (p -> (pathLength + 1))
       }
       if neighbors.contains(endPoint) then newKnownDistances(endPoint)
-      else helper(newKnownDistances, visitedPoints + point)
+      else helper(newKnownDistances - point, visitedPoints + point)
   end helper
 
-  val startingKnownDistances = Map(startPoint -> 0).withDefaultValue(Int.MaxValue)
-  helper(startingKnownDistances, Set())
+  val startingTentativeDistances = Map(startPoint -> 0).withDefaultValue(Int.MaxValue)
+  helper(startingTentativeDistances, Set())
 
 end dijkstraHelper
 
