@@ -8,6 +8,6 @@ class Exercise08Test extends AocTestSuite:
                   |33549
                   |35390""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex08.run01, 21)
-  testStringSample("Part two on sample input", sample, ex08.run02, 8)
+  testSample("Part one on sample input", sample, ex08.run01, 21)
+  testSample("Part two on sample input", sample, ex08.run02, 8)
 end Exercise08Test

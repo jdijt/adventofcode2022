@@ -19,6 +19,6 @@ class Exercise01Test extends AocTestSuite:
                   |
                   |10000""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex01.run01, 24000)
-  testStringSample("Part two on sample input", sample, ex01.run02, 45000)
+  testSample("Part one on sample input", sample, ex01.run01, 24000)
+  testSample("Part two on sample input", sample, ex01.run02, 45000)
 end Exercise01Test

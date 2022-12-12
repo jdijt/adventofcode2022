@@ -26,6 +26,6 @@ class Exercise07Test extends AocTestSuite:
                   |5626152 d.ext
                   |7214296 k""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex07.run01, 95437)
-  testStringSample("Part two on sample input", sample, ex07.run02, 24933642)
+  testSample("Part one on sample input", sample, ex07.run01, 95437)
+  testSample("Part two on sample input", sample, ex07.run02, 24933642)
 end Exercise07Test

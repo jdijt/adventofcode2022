@@ -8,5 +8,5 @@ class Exercise02Test extends AocTestSuite:
                   |B X
                   |C Z""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex02.run01, 15)
-  testStringSample("Part two on sample input", sample, ex02.run02, 12)
+  testSample("Part one on sample input", sample, ex02.run01, 15)
+  testSample("Part two on sample input", sample, ex02.run02, 12)

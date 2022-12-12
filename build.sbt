@@ -6,7 +6,8 @@ lazy val root = project
     version      := "0.1.0",
     scalaVersion := "3.2.1",
     libraryDependencies ++= Seq(
-      "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1",
-      "org.scalameta"          %% "munit"                    % "1.0.0-M7" % Test
+      "org.scala-lang.modules" %% "scala-parser-combinators"   % "2.1.1",
+      "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.4",
+      "org.scalameta"          %% "munit"                      % "1.0.0-M7" % Test
     )
   )

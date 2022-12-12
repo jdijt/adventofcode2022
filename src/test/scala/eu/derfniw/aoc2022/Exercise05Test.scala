@@ -14,6 +14,6 @@ class Exercise05Test extends AocTestSuite:
                   |move 2 from 2 to 1
                   |move 1 from 1 to 2""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex05.run01, "CMZ")
-  testStringSample("Part two on sample input", sample, ex05.run02, "MCD")
+  testSample("Part one on sample input", sample, ex05.run01, "CMZ")
+  testSample("Part two on sample input", sample, ex05.run02, "MCD")
 end Exercise05Test

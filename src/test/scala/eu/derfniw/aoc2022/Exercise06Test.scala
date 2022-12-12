@@ -13,10 +13,10 @@ class Exercise06Test extends AocTestSuite:
   )
 
   samplesResponses.zipWithIndex.foreach { case ((in, out, _), idx) =>
-    testStringSample(s"Part one on sample ${idx + 1}", in, ex06.run01, out)
+    testSample(s"Part one on sample ${idx + 1}", in, ex06.run01, out)
   }
 
   samplesResponses.zipWithIndex.foreach { case ((in, _, out), idx) =>
-    testStringSample(s"Part two on sample ${idx + 1}", in, ex06.run02, out)
+    testSample(s"Part two on sample ${idx + 1}", in, ex06.run02, out)
   }
 end Exercise06Test

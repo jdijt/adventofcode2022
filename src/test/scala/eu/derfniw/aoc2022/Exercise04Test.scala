@@ -11,6 +11,6 @@ class Exercise04Test extends AocTestSuite:
                   |6-6,4-6
                   |2-6,4-8""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex04.run01, 2)
-  testStringSample("Part two on sample input", sample, ex04.run02, 4)
+  testSample("Part one on sample input", sample, ex04.run01, 2)
+  testSample("Part two on sample input", sample, ex04.run02, 4)
 end Exercise04Test

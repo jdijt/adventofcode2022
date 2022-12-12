@@ -19,7 +19,7 @@ class Exercise09Test extends AocTestSuite:
                    |L 25
                    |U 20""".stripMargin
 
-  testStringSample("Part one on sample input", sample, ex09.run01, 13)
-  testStringSample("Part two on sample input", sample, ex09.run02, 1)
-  testStringSample("Part two on sample input 2", sample2, ex09.run02, 36)
+  testSample("Part one on sample input", sample, ex09.run01, 13)
+  testSample("Part two on sample input", sample, ex09.run02, 1)
+  testSample("Part two on sample input 2", sample2, ex09.run02, 36)
 end Exercise09Test

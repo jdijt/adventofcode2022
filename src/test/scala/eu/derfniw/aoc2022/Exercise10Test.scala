@@ -6,7 +6,7 @@ class Exercise10Test extends AocTestSuite:
 
   def sampleSource = Source.fromResource("input_10_test")
 
-  testSourceSample("Part one on sample input", sampleSource, ex10.run01, 13140)
+  testSample("Part one on sample input", sampleSource, ex10.run01, 13140)
 
   val partTwoExpected =
     """|##..##..##..##..##..##..##..##..##..##..
@@ -16,5 +16,5 @@ class Exercise10Test extends AocTestSuite:
        |######......######......######......####
        |#######.......#######.......#######.....""".stripMargin
 
-  testSourceSample("Part two on sample input", sampleSource, ex10.run02, partTwoExpected)
+  testSample("Part two on sample input", sampleSource, ex10.run02, partTwoExpected)
 end Exercise10Test

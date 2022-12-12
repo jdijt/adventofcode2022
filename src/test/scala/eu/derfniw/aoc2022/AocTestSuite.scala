@@ -4,17 +4,17 @@ import scala.io.Source
 
 abstract class AocTestSuite extends munit.BaseFunSuite:
 
-  def testStringSample[A](
+  def testSample[A](
       name: String,
       input: String,
       toTest: Source => A,
       expected: A
-  )(using loc: munit.Location) =
-    testSourceSample(name, Source.fromString(input), toTest, expected)
+  )(using loc: munit.Location): Unit =
+    testSample(name, Source.fromString(input), toTest, expected)
 
-  def testSourceSample[A](name: String, input: Source, toTest: Source => A, expected: A)(using
+  def testSample[A](name: String, input: Source, toTest: Source => A, expected: A)(using
       loc: munit.Location
-  ) =
+  ): Unit =
     test(name) {
       assertEquals(toTest(input), expected)
     }
