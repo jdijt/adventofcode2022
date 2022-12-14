@@ -83,7 +83,7 @@ def run02(in: Source): Int =
 end run02
 
 @main
-def exercise10() =
+def exercise12() =
   def source = Source.fromResource("input_12")
   print("Part 1: ")
   println(run01(source))
