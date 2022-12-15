@@ -43,7 +43,7 @@ end run01
 def run02(space: Int)(in: Source): Long =
   val sensors = parseInput(in)
 
-  val candidatePoints = sensors.toSet.par.flatMap { s =>
+  val point = sensors.toSet.par.flatMap { s =>
     ((s.minX - 1) to (s.maxX + 1)).iterator
       .flatMap { x =>
         val yOffset = (s.beaconDistance + 1) - abs(s.location.x - x)
@@ -52,10 +52,7 @@ def run02(space: Int)(in: Source): Long =
       }
       .filter(p => p.x <= space && p.x >= 0 && p.y <= space && p.y >= 0)
       .filter(p => !sensors.exists(_.inRange(p)))
-      .toSet
-  }
-
-  val point = candidatePoints.head // should be only one unique point
+  }.head // This should lead to only one unique point. Per challenge design.
 
   point.x * 4000000L + point.y
 end run02
